@@ -16,12 +16,15 @@ class DatesDecoration {
   /// - datesBorderRadius, changes the dates border radius.
   final double? datesBorderRadius;
 
+  final Widget? overlayWidget;
+
   DatesDecoration({
     this.datesBackgroundColor,
     this.datesTextColor,
     this.datesTextStyle,
     this.datesBorderColor,
     this.datesBorderRadius,
+    this.overlayWidget,
   });
 
   /// Creates copy of DatesDecoration object with the given
@@ -32,6 +35,7 @@ class DatesDecoration {
     TextStyle? datesTextStyle,
     Color? datesBorderColor,
     double? datesBorderRadius,
+    Widget? overlayWidget,
   }) {
     return DatesDecoration(
       datesBackgroundColor: datesBackgroundColor ?? this.datesBackgroundColor,
@@ -39,6 +43,7 @@ class DatesDecoration {
       datesTextStyle: datesTextStyle ?? this.datesTextStyle,
       datesBorderColor: datesBorderColor ?? this.datesBorderColor,
       datesBorderRadius: datesBorderRadius ?? this.datesBorderRadius,
+      overlayWidget: overlayWidget ?? this.overlayWidget,
     );
   }
 
@@ -51,7 +56,8 @@ class DatesDecoration {
           datesTextColor == other.datesTextColor &&
           datesTextStyle == other.datesTextStyle &&
           datesBorderColor == other.datesBorderColor &&
-          datesBorderRadius == other.datesBorderRadius;
+          datesBorderRadius == other.datesBorderRadius &&
+          overlayWidget == other.overlayWidget;
 
   @override
   int get hashCode =>
@@ -59,12 +65,13 @@ class DatesDecoration {
       datesTextColor.hashCode ^
       datesTextStyle.hashCode ^
       datesBorderColor.hashCode ^
-      datesBorderRadius.hashCode;
+      datesBorderRadius.hashCode ^
+      overlayWidget.hashCode;
 
   // Implement toString to make it easier to see information
   // when using the print statement.
   @override
   String toString() {
-    return 'DatesDecoration{datesBackgroundColor: $datesBackgroundColor, datesTextColor: $datesTextColor, datesTextStyle: $datesTextStyle, datesBorderColor: $datesBorderColor, datesBorderRadius: $datesBorderRadius}';
+    return 'DatesDecoration{datesBackgroundColor: $datesBackgroundColor, datesTextColor: $datesTextColor, datesTextStyle: $datesTextStyle, datesBorderColor: $datesBorderColor, datesBorderRadius: $datesBorderRadius, overlayWidget: $overlayWidget}';
   }
 }

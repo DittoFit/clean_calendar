@@ -300,20 +300,22 @@ class CalendarProperties {
         /// Setting currentDateProperties properties.
         currentDateProperties = DatesProperties(
           datesDecoration: DatesDecoration(
-              datesBackgroundColor:
-                  currentDateProperties?.datesDecoration?.datesBackgroundColor,
-              datesTextColor:
-                  currentDateProperties?.datesDecoration?.datesTextColor ??
-                      Theme.of(context).colorScheme.primary,
-              datesTextStyle:
-                  currentDateProperties?.datesDecoration?.datesTextStyle ??
-                      const TextStyle(),
-              datesBorderColor:
-                  currentDateProperties?.datesDecoration?.datesBorderColor ??
-                      Theme.of(context).colorScheme.primary,
-              datesBorderRadius:
-                  currentDateProperties?.datesDecoration?.datesBorderRadius ??
-                      12),
+            datesBackgroundColor:
+                currentDateProperties?.datesDecoration?.datesBackgroundColor,
+            datesTextColor:
+                currentDateProperties?.datesDecoration?.datesTextColor ??
+                    Theme.of(context).colorScheme.primary,
+            datesTextStyle:
+                currentDateProperties?.datesDecoration?.datesTextStyle ??
+                    const TextStyle(),
+            datesBorderColor:
+                currentDateProperties?.datesDecoration?.datesBorderColor ??
+                    Theme.of(context).colorScheme.primary,
+            datesBorderRadius:
+                currentDateProperties?.datesDecoration?.datesBorderRadius ?? 12,
+            overlayWidget:
+                currentDateProperties?.datesDecoration?.overlayWidget,
+          ),
           disable: currentDateProperties?.disable ?? false,
           hide: currentDateProperties?.hide ?? false,
         ),

@@ -24,6 +24,8 @@ DatesProperties getSuitableDatesProperties({
             .currentDateProperties.datesDecoration?.datesBorderColor,
         datesTextStyle: calendarProperties
             .currentDateProperties.datesDecoration?.datesTextStyle,
+        overlayWidget: calendarProperties
+            .currentDateProperties.datesDecoration?.overlayWidget,
       ));
     } else {
       return calendarProperties.currentDateProperties;
