@@ -155,6 +155,7 @@ class NoSelectionMonthViewGridViewBuilder extends StatelessWidget {
               calendarProperties: calendarProperties,
               pageViewElementDate: pageViewElementsDates[index],
               pageViewDate: pageViewDate,
+              pageControllerState: pageControllerState,
             ),
           ),
           addRepaintBoundaries: false,
@@ -206,6 +207,7 @@ class DateSingleMultipleSelectionMonthViewGridViewBuilder
           calendarProperties: calendarProperties,
           pageViewElementDate: pageViewElementsDates[index],
           pageViewDate: pageViewDate,
+          pageControllerState: pageControllerState,
         );
       },
     );
@@ -247,6 +249,7 @@ class NoSelectionWeekViewGridViewBuilder extends StatelessWidget {
               calendarProperties: calendarProperties,
               pageViewElementDate: pageViewElementsDates[index],
               pageViewDate: pageViewDate,
+              pageControllerState: pageControllerState,
             ),
           ),
           addRepaintBoundaries: false,
@@ -298,6 +301,7 @@ class DateSingleMultipleSelectionWeekViewGridViewBuilder
           calendarProperties: calendarProperties,
           pageViewElementDate: pageViewElementsDates[index],
           pageViewDate: pageViewDate,
+          pageControllerState: pageControllerState,
         );
       },
     );

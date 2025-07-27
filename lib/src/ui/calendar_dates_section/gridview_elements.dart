@@ -1,5 +1,6 @@
 import 'package:clean_calendar/src/models/calendar_properties.dart';
 import 'package:clean_calendar/src/models/dates_properties.dart';
+import 'package:clean_calendar/src/state/page_controller.dart';
 import 'package:clean_calendar/src/utils/get_suitable_calendar_general_date_widget.dart';
 import 'package:clean_calendar/src/utils/get_suitable_calendar_streak_date_widget.dart';
 import 'package:clean_calendar/src/utils/get_suitable_dates_properties.dart';
@@ -10,11 +11,13 @@ class CalendarDateWidget extends StatefulWidget {
       {super.key,
       required this.calendarProperties,
       required this.pageViewElementDate,
-      required this.pageViewDate});
+      required this.pageViewDate,
+      this.pageControllerState});
 
   final CalendarProperties calendarProperties;
   final DateTime pageViewElementDate;
   final DateTime pageViewDate;
+  final PageControllerState? pageControllerState;
 
   @override
   State<CalendarDateWidget> createState() => _CalendarDateWidgetState();
@@ -24,6 +27,7 @@ class _CalendarDateWidgetState extends State<CalendarDateWidget> {
   final LayerLink _layerLink = LayerLink();
   late final OverlayPortalController _overlayController;
   late final DatesProperties datesProperties;
+  bool _isTargetVisible = false;
 
   @override
   void initState() {
@@ -36,11 +40,67 @@ class _CalendarDateWidgetState extends State<CalendarDateWidget> {
       pageViewDate: widget.pageViewDate,
     );
 
-    // Show overlay when widget is built and overlayWidget is provided
+    // Check visibility and show overlay when widget is built and overlayWidget is provided
     if (datesProperties.datesDecoration?.overlayWidget != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _overlayController.show();
+        _checkVisibilityAndShowOverlay();
       });
+    }
+
+    // Add listener to page controller to check visibility on scroll
+    if (widget.pageControllerState != null) {
+      widget.pageControllerState!.pageController.addListener(_onPageChanged);
+    }
+  }
+
+  @override
+  void dispose() {
+    // Remove page controller listener
+    if (widget.pageControllerState != null) {
+      widget.pageControllerState!.pageController.removeListener(_onPageChanged);
+    }
+    _overlayController.hide();
+    super.dispose();
+  }
+
+  void _onPageChanged() {
+    // Check visibility when page changes
+    if (datesProperties.datesDecoration?.overlayWidget != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _checkVisibilityAndShowOverlay();
+      });
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Re-check visibility when dependencies change (e.g., screen size changes)
+    if (datesProperties.datesDecoration?.overlayWidget != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _checkVisibilityAndShowOverlay();
+      });
+    }
+  }
+
+  void _checkVisibilityAndShowOverlay() {
+    final RenderBox? renderBox = context.findRenderObject() as RenderBox?;
+    if (renderBox != null && renderBox.hasSize) {
+      final position = renderBox.localToGlobal(Offset.zero);
+      final size = renderBox.size;
+
+      // Check if the widget is visible on screen
+      final screenSize = MediaQuery.of(context).size;
+      _isTargetVisible = position.dx < screenSize.width &&
+          position.dx + size.width > 0 &&
+          position.dy < screenSize.height &&
+          position.dy + size.height > 0;
+
+      if (_isTargetVisible) {
+        _overlayController.show();
+      } else {
+        _overlayController.hide();
+      }
     }
   }
 
