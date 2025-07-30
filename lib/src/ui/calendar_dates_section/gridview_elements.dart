@@ -59,7 +59,9 @@ class _CalendarDateWidgetState extends State<CalendarDateWidget> {
     if (widget.pageControllerState != null) {
       widget.pageControllerState!.pageController.removeListener(_onPageChanged);
     }
-    _overlayController.hide();
+    if (_overlayController.isShowing) {
+      _overlayController.hide();
+    }
     super.dispose();
   }
 
