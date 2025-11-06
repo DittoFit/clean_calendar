@@ -1,6 +1,7 @@
 import 'package:clean_calendar/src/models/calendar_properties.dart';
 import 'package:clean_calendar/src/models/dates_properties.dart';
 import 'package:clean_calendar/src/size_provider.dart';
+import 'package:clean_calendar/src/ui/shield_date_wrapper.dart';
 import 'package:clean_calendar/src/utils/get_end_weekday_from_start_weekday.dat.dart';
 import 'package:clean_calendar/src/utils/get_suitable_dates_on_tap.dart';
 import 'package:clean_calendar/src/utils/get_suitable_dates_properties.dart';
@@ -47,6 +48,8 @@ class CalendarStreakStartDenseDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -98,11 +101,13 @@ class CalendarStreakStartDenseDate extends StatelessWidget {
                           //Replace here with Ink after this fix https://github.com/flutter/flutter/issues/73315
                           decoration: BoxDecoration(
                             border: datesBorderColor != null
-                                ? Border.all(color: datesBorderColor, width: 1)
+                                ? Border.all(
+                                    color: datesBorderColor, width: 1)
                                 : null,
                             borderRadius: datesBorderRadius != null
                                 ? BorderRadius.only(
-                                    topLeft: Radius.circular(datesBorderRadius),
+                                    topLeft:
+                                        Radius.circular(datesBorderRadius),
                                     bottomLeft:
                                         Radius.circular(datesBorderRadius),
                                   )
@@ -110,13 +115,16 @@ class CalendarStreakStartDenseDate extends StatelessWidget {
                             color: datesBackgroundColor,
                           ),
                           child: Center(
-                            child: Text(
-                              pageViewElementDate.day.toString(),
-                              style: datesTextStyle != null
-                                  ? datesTextStyle.copyWith(
-                                      color: datesTextColor,
-                                    )
-                                  : TextStyle(color: datesTextColor),
+                            child: ShieldDateWrapper(
+                              showShield: isShieldDate,
+                              child: Text(
+                                pageViewElementDate.day.toString(),
+                                style: datesTextStyle != null
+                                    ? datesTextStyle.copyWith(
+                                        color: datesTextColor,
+                                      )
+                                    : TextStyle(color: datesTextColor),
+                              ),
                             ),
                           ),
                         ),
@@ -202,6 +210,8 @@ class CalendarStreakStartDenseSplashDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -285,14 +295,17 @@ class CalendarStreakStartDenseSplashDate extends StatelessWidget {
                               color: datesBackgroundColor,
                             ),
                             child: Center(
-                              child: Text(
-                                key: widgetKey,
-                                pageViewElementDate.day.toString(),
-                                style: datesTextStyle != null
-                                    ? datesTextStyle.copyWith(
-                                        color: datesTextColor,
-                                      )
-                                    : TextStyle(color: datesTextColor),
+                              child: ShieldDateWrapper(
+                                showShield: isShieldDate,
+                                child: Text(
+                                  key: widgetKey,
+                                  pageViewElementDate.day.toString(),
+                                  style: datesTextStyle != null
+                                      ? datesTextStyle.copyWith(
+                                          color: datesTextColor,
+                                        )
+                                      : TextStyle(color: datesTextColor),
+                                ),
                               ),
                             ),
                           ),
@@ -375,6 +388,8 @@ class CalendarStreakStartExpandedDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -401,9 +416,11 @@ class CalendarStreakStartExpandedDate extends StatelessWidget {
                   border: datesBorderColor != null
                       ? Border(
                           top: BorderSide(color: datesBorderColor, width: 1),
-                          bottom: BorderSide(color: datesBorderColor, width: 1),
+                          bottom:
+                              BorderSide(color: datesBorderColor, width: 1),
                           left: BorderSide(color: datesBorderColor, width: 1),
-                          right: BorderSide(color: datesBorderColor, width: 1),
+                          right:
+                              BorderSide(color: datesBorderColor, width: 1),
                         )
                       : null,
                   borderRadius: datesBorderRadius != null
@@ -414,13 +431,16 @@ class CalendarStreakStartExpandedDate extends StatelessWidget {
                   color: datesBackgroundColor,
                 ),
                 child: Center(
-                  child: Text(
-                    pageViewElementDate.day.toString(),
-                    style: datesTextStyle != null
-                        ? datesTextStyle.copyWith(
-                            color: datesTextColor,
-                          )
-                        : TextStyle(color: datesTextColor),
+                  child: ShieldDateWrapper(
+                    showShield: isShieldDate,
+                    child: Text(
+                      pageViewElementDate.day.toString(),
+                      style: datesTextStyle != null
+                          ? datesTextStyle.copyWith(
+                              color: datesTextColor,
+                            )
+                          : TextStyle(color: datesTextColor),
+                    ),
                   ),
                 ),
               ),
@@ -467,6 +487,8 @@ class CalendarStreakBetweenDenseSplashDate extends StatelessWidget {
     Color? datesBorderColor = datesProperties.datesDecoration?.datesBorderColor;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -543,14 +565,17 @@ class CalendarStreakBetweenDenseSplashDate extends StatelessWidget {
                         color: datesBackgroundColor,
                       ),
                       child: Center(
-                        child: Text(
-                          key: widgetKey,
-                          pageViewElementDate.day.toString(),
-                          style: datesTextStyle != null
-                              ? datesTextStyle.copyWith(
-                                  color: datesTextColor,
-                                )
-                              : TextStyle(color: datesTextColor),
+                        child: ShieldDateWrapper(
+                          showShield: isShieldDate,
+                          child: Text(
+                            key: widgetKey,
+                            pageViewElementDate.day.toString(),
+                            style: datesTextStyle != null
+                                ? datesTextStyle.copyWith(
+                                    color: datesTextColor,
+                                  )
+                                : TextStyle(color: datesTextColor),
+                          ),
                         ),
                       ),
                     ),
@@ -629,6 +654,8 @@ class CalendarStreakBetweenExpandedDate extends StatelessWidget {
     Color? datesBorderColor = datesProperties.datesDecoration?.datesBorderColor;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -658,7 +685,8 @@ class CalendarStreakBetweenExpandedDate extends StatelessWidget {
                 ),
                 child: Container(
                   margin: EdgeInsets.only(
-                    right: pageViewElementDate.weekday == startWeekday ? 4 : 0,
+                    right:
+                        pageViewElementDate.weekday == startWeekday ? 4 : 0,
                     left: pageViewElementDate.weekday == endWeekday ? 4 : 0,
                   ),
                   child: Row(
@@ -667,13 +695,16 @@ class CalendarStreakBetweenExpandedDate extends StatelessWidget {
                         child: SizedBox(),
                       ),
                       Center(
-                        child: Text(
-                          pageViewElementDate.day.toString(),
-                          style: datesTextStyle != null
-                              ? datesTextStyle.copyWith(
-                                  color: datesTextColor,
-                                )
-                              : TextStyle(color: datesTextColor),
+                        child: ShieldDateWrapper(
+                          showShield: isShieldDate,
+                          child: Text(
+                            pageViewElementDate.day.toString(),
+                            style: datesTextStyle != null
+                                ? datesTextStyle.copyWith(
+                                    color: datesTextColor,
+                                  )
+                                : TextStyle(color: datesTextColor),
+                          ),
                         ),
                       ),
                       const Expanded(
@@ -724,6 +755,8 @@ class CalendarStreakEndDenseDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -812,7 +845,8 @@ class CalendarStreakEndDenseDate extends StatelessWidget {
                           //Replace here with Ink after this fix https://github.com/flutter/flutter/issues/73315
                           decoration: BoxDecoration(
                             border: datesBorderColor != null
-                                ? Border.all(color: datesBorderColor, width: 1)
+                                ? Border.all(
+                                    color: datesBorderColor, width: 1)
                                 : null,
                             borderRadius: datesBorderRadius != null
                                 ? BorderRadius.only(
@@ -825,13 +859,16 @@ class CalendarStreakEndDenseDate extends StatelessWidget {
                             color: datesBackgroundColor,
                           ),
                           child: Center(
-                            child: Text(
-                              pageViewElementDate.day.toString(),
-                              style: datesTextStyle != null
-                                  ? datesTextStyle.copyWith(
-                                      color: datesTextColor,
-                                    )
-                                  : TextStyle(color: datesTextColor),
+                            child: ShieldDateWrapper(
+                              showShield: isShieldDate,
+                              child: Text(
+                                pageViewElementDate.day.toString(),
+                                style: datesTextStyle != null
+                                    ? datesTextStyle.copyWith(
+                                        color: datesTextColor,
+                                      )
+                                    : TextStyle(color: datesTextColor),
+                              ),
                             ),
                           ),
                         ),
@@ -886,6 +923,8 @@ class CalendarStreakEndDenseSplashDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -997,14 +1036,17 @@ class CalendarStreakEndDenseSplashDate extends StatelessWidget {
                               color: datesBackgroundColor,
                             ),
                             child: Center(
-                              child: Text(
-                                key: widgetKey,
-                                pageViewElementDate.day.toString(),
-                                style: datesTextStyle != null
-                                    ? datesTextStyle.copyWith(
-                                        color: datesTextColor,
-                                      )
-                                    : TextStyle(color: datesTextColor),
+                              child: ShieldDateWrapper(
+                                showShield: isShieldDate,
+                                child: Text(
+                                  key: widgetKey,
+                                  pageViewElementDate.day.toString(),
+                                  style: datesTextStyle != null
+                                      ? datesTextStyle.copyWith(
+                                          color: datesTextColor,
+                                        )
+                                      : TextStyle(color: datesTextColor),
+                                ),
                               ),
                             ),
                           ),
@@ -1058,6 +1100,8 @@ class CalendarStreakEndExpandedDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -1084,9 +1128,11 @@ class CalendarStreakEndExpandedDate extends StatelessWidget {
                   border: datesBorderColor != null
                       ? Border(
                           top: BorderSide(color: datesBorderColor, width: 1),
-                          bottom: BorderSide(color: datesBorderColor, width: 1),
+                          bottom:
+                              BorderSide(color: datesBorderColor, width: 1),
                           left: BorderSide(color: datesBorderColor, width: 1),
-                          right: BorderSide(color: datesBorderColor, width: 1),
+                          right:
+                              BorderSide(color: datesBorderColor, width: 1),
                         )
                       : null,
                   borderRadius: datesBorderRadius != null
@@ -1097,13 +1143,16 @@ class CalendarStreakEndExpandedDate extends StatelessWidget {
                   color: datesBackgroundColor,
                 ),
                 child: Center(
-                  child: Text(
-                    pageViewElementDate.day.toString(),
-                    style: datesTextStyle != null
-                        ? datesTextStyle.copyWith(
-                            color: datesTextColor,
-                          )
-                        : TextStyle(color: datesTextColor),
+                  child: ShieldDateWrapper(
+                    showShield: isShieldDate,
+                    child: Text(
+                      pageViewElementDate.day.toString(),
+                      style: datesTextStyle != null
+                          ? datesTextStyle.copyWith(
+                              color: datesTextColor,
+                            )
+                          : TextStyle(color: datesTextColor),
+                    ),
                   ),
                 ),
               ),
@@ -1146,6 +1195,8 @@ class CalendarStreakSingleDenseDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -1181,13 +1232,16 @@ class CalendarStreakSingleDenseDate extends StatelessWidget {
                         color: datesBackgroundColor,
                       ),
                       child: Center(
-                        child: Text(
-                          pageViewElementDate.day.toString(),
-                          style: datesTextStyle != null
-                              ? datesTextStyle.copyWith(
-                                  color: datesTextColor,
-                                )
-                              : TextStyle(color: datesTextColor),
+                        child: ShieldDateWrapper(
+                          showShield: isShieldDate,
+                          child: Text(
+                            pageViewElementDate.day.toString(),
+                            style: datesTextStyle != null
+                                ? datesTextStyle.copyWith(
+                                    color: datesTextColor,
+                                  )
+                                : TextStyle(color: datesTextColor),
+                          ),
                         ),
                       ),
                     ),
@@ -1238,6 +1292,8 @@ class CalendarStreakSingleDenseSplashDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -1290,14 +1346,17 @@ class CalendarStreakSingleDenseSplashDate extends StatelessWidget {
                           color: datesBackgroundColor,
                         ),
                         child: Center(
-                          child: Text(
-                            key: widgetKey,
-                            pageViewElementDate.day.toString(),
-                            style: datesTextStyle != null
-                                ? datesTextStyle.copyWith(
-                                    color: datesTextColor,
-                                  )
-                                : TextStyle(color: datesTextColor),
+                          child: ShieldDateWrapper(
+                            showShield: isShieldDate,
+                            child: Text(
+                              key: widgetKey,
+                              pageViewElementDate.day.toString(),
+                              style: datesTextStyle != null
+                                  ? datesTextStyle.copyWith(
+                                      color: datesTextColor,
+                                    )
+                                  : TextStyle(color: datesTextColor),
+                            ),
                           ),
                         ),
                       ),
@@ -1347,6 +1406,8 @@ class CalendarStreakSingleExpandedDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -1374,13 +1435,16 @@ class CalendarStreakSingleExpandedDate extends StatelessWidget {
                   color: datesBackgroundColor,
                 ),
                 child: Center(
-                  child: Text(
-                    pageViewElementDate.day.toString(),
-                    style: datesTextStyle != null
-                        ? datesTextStyle.copyWith(
-                            color: datesTextColor,
-                          )
-                        : TextStyle(color: datesTextColor),
+                  child: ShieldDateWrapper(
+                    showShield: isShieldDate,
+                    child: Text(
+                      pageViewElementDate.day.toString(),
+                      style: datesTextStyle != null
+                          ? datesTextStyle.copyWith(
+                              color: datesTextColor,
+                            )
+                          : TextStyle(color: datesTextColor),
+                    ),
                   ),
                 ),
               ),

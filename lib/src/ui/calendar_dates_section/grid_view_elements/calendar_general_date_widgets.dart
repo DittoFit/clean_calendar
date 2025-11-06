@@ -1,6 +1,7 @@
 import 'package:clean_calendar/src/models/calendar_properties.dart';
 import 'package:clean_calendar/src/models/dates_properties.dart';
 import 'package:clean_calendar/src/size_provider.dart';
+import 'package:clean_calendar/src/ui/shield_date_wrapper.dart';
 import 'package:clean_calendar/src/utils/get_suitable_dates_on_tap.dart';
 import 'package:clean_calendar/src/utils/get_suitable_dates_properties.dart';
 import 'package:clean_calendar/src/utils/get_widget_center_offset_info.dart';
@@ -40,6 +41,8 @@ class CalendarGeneralDenseDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -75,13 +78,16 @@ class CalendarGeneralDenseDate extends StatelessWidget {
                         color: datesBackgroundColor,
                       ),
                       child: Center(
-                        child: Text(
-                          pageViewElementDate.day.toString(),
-                          style: datesTextStyle != null
-                              ? datesTextStyle.copyWith(
-                                  color: datesTextColor,
-                                )
-                              : TextStyle(color: datesTextColor),
+                        child: ShieldDateWrapper(
+                          showShield: isShieldDate,
+                          child: Text(
+                            pageViewElementDate.day.toString(),
+                            style: datesTextStyle != null
+                                ? datesTextStyle.copyWith(
+                                    color: datesTextColor,
+                                  )
+                                : TextStyle(color: datesTextColor),
+                          ),
                         ),
                       ),
                     ),
@@ -132,6 +138,8 @@ class CalendarGeneralDenseSplashDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -184,15 +192,18 @@ class CalendarGeneralDenseSplashDate extends StatelessWidget {
                           color: datesBackgroundColor,
                         ),
                         child: Center(
-                          child: Text(
-                            key: widgetKey,
-                            pageViewElementDate.day.toString(),
-                            overflow: TextOverflow.ellipsis,
-                            style: datesTextStyle != null
-                                ? datesTextStyle.copyWith(
-                                    color: datesTextColor,
-                                  )
-                                : TextStyle(color: datesTextColor),
+                          child: ShieldDateWrapper(
+                            showShield: isShieldDate,
+                            child: Text(
+                              key: widgetKey,
+                              pageViewElementDate.day.toString(),
+                              overflow: TextOverflow.ellipsis,
+                              style: datesTextStyle != null
+                                  ? datesTextStyle.copyWith(
+                                      color: datesTextColor,
+                                    )
+                                  : TextStyle(color: datesTextColor),
+                            ),
                           ),
                         ),
                       ),
@@ -242,6 +253,8 @@ class CalendarGeneralExpandedDate extends StatelessWidget {
         datesProperties.datesDecoration?.datesBorderRadius;
     bool hide = datesProperties.hide ?? false;
     bool disable = datesProperties.disable ?? false;
+    final bool isShieldDate =
+        calendarProperties.shieldDates.contains(pageViewElementDate);
 
     return !hide
         ? InkResponse(
@@ -269,13 +282,16 @@ class CalendarGeneralExpandedDate extends StatelessWidget {
                   color: datesBackgroundColor,
                 ),
                 child: Center(
-                  child: Text(
-                    pageViewElementDate.day.toString(),
-                    style: datesTextStyle != null
-                        ? datesTextStyle.copyWith(
-                            color: datesTextColor,
-                          )
-                        : TextStyle(color: datesTextColor),
+                  child: ShieldDateWrapper(
+                    showShield: isShieldDate,
+                    child: Text(
+                      pageViewElementDate.day.toString(),
+                      style: datesTextStyle != null
+                          ? datesTextStyle.copyWith(
+                              color: datesTextColor,
+                            )
+                          : TextStyle(color: datesTextColor),
+                    ),
                   ),
                 ),
               ),

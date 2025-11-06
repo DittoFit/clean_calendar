@@ -24,6 +24,7 @@ class CleanCalendar extends StatelessWidget {
     this.initialViewMonthDateTime,
     this.currentDateOfCalendar,
     this.datesForStreaks,
+    this.shieldDates,
     this.selectedDates,
     this.onSelectedDates,
     this.onCalendarViewDate,
@@ -83,6 +84,9 @@ class CleanCalendar extends StatelessWidget {
   /// - datesForStreaks, It takes the list of dates to be shown as streaks.
   final List<DateTime>? datesForStreaks;
 
+  /// - shieldDates, It takes the list of dates to be shown with a shield icon (UI only, does not affect streak calculation).
+  final List<DateTime>? shieldDates;
+
   /// - selectedDates, It takes the list of pre-selected dates to be shown as selected.
   final List<DateTime>? selectedDates;
 
@@ -133,6 +137,7 @@ class CleanCalendar extends StatelessWidget {
           initialViewMonthDateTime: initialViewMonthDateTime,
           currentDateOfCalendar: currentDateOfCalendar,
           datesForStreaks: datesForStreaks,
+          shieldDates: shieldDates,
           selectedDates: selectedDates,
           onSelectedDates: onSelectedDates,
           onCalendarViewDate: onCalendarViewDate,

@@ -120,6 +120,9 @@ class CalendarProperties {
   /// List of streak dates.
   final List<DateTime> datesForStreaks;
 
+  /// List of shield dates (UI only, does not affect streak calculation).
+  final List<DateTime> shieldDates;
+
   /// List of selected dates.
   final List<DateTime> selectedDates;
 
@@ -165,6 +168,7 @@ class CalendarProperties {
     DateTime? initialViewMonthDateTime,
     DateTime? currentDateOfCalendar,
     List<DateTime>? datesForStreaks,
+    List<DateTime>? shieldDates,
     List<DateTime>? selectedDates,
     this.onSelectedDates,
     this.onCalendarViewDate,
@@ -453,6 +457,12 @@ class CalendarProperties {
                 .toList() ??
             [],
 
+        /// Setting shieldDates value.
+        shieldDates = shieldDates
+                ?.map((e) => DateTime.utc(e.year, e.month, e.day))
+                .toList() ??
+            [],
+
         /// Setting selectedDates value.
         selectedDates = selectedDates
                 ?.map((e) => DateTime.utc(e.year, e.month, e.day))
@@ -517,6 +527,7 @@ class CalendarProperties {
           initialViewMonthDateTime == other.initialViewMonthDateTime &&
           currentDateOfCalendar == other.currentDateOfCalendar &&
           datesForStreaks == other.datesForStreaks &&
+          shieldDates == other.shieldDates &&
           selectedDates == other.selectedDates &&
           onSelectedDates == other.onSelectedDates &&
           onCalendarViewDate == other.onCalendarViewDate &&
@@ -546,6 +557,7 @@ class CalendarProperties {
       initialViewMonthDateTime.hashCode ^
       currentDateOfCalendar.hashCode ^
       datesForStreaks.hashCode ^
+      shieldDates.hashCode ^
       selectedDates.hashCode ^
       onSelectedDates.hashCode ^
       onCalendarViewDate.hashCode ^
@@ -560,6 +572,6 @@ class CalendarProperties {
   // when using the print statement.
   @override
   String toString() {
-    return 'CalendarProperties{weekdaysProperties: $weekdaysProperties, streakDatesProperties: $streakDatesProperties, currentDateProperties: $currentDateProperties, generalDatesProperties: $generalDatesProperties, leadingTrailingDatesProperties: $leadingTrailingDatesProperties, selectedDatesProperties: $selectedDatesProperties, selectedRangeBetweenDatesProperties: $selectedRangeBetweenDatesProperties, enableDenseViewForDates: $enableDenseViewForDates, enableDenseSplashForDates: $enableDenseSplashForDates, startDateOfCalendar: $startDateOfCalendar, endDateOfCalendar: $endDateOfCalendar, dateSelectionMode: $dateSelectionMode, disablePastDates: $disablePastDates, initialViewMonthDateTime: $initialViewMonthDateTime, currentDateOfCalendar: $currentDateOfCalendar, datesForStreaks: $datesForStreaks,  selectedDates: $selectedDates, onSelectedDates: $onSelectedDates, onCalendarViewDate: $onCalendarViewDate, datePickerCalendarView: $datePickerCalendarView, startWeekday: $startWeekday, weekdaysSymbol: $weekdaysSymbol, monthsSymbol: $monthsSymbol, calendarDatesSectionMaxHeight: $calendarDatesSectionMaxHeight, context: $context}';
+    return 'CalendarProperties{weekdaysProperties: $weekdaysProperties, streakDatesProperties: $streakDatesProperties, currentDateProperties: $currentDateProperties, generalDatesProperties: $generalDatesProperties, leadingTrailingDatesProperties: $leadingTrailingDatesProperties, selectedDatesProperties: $selectedDatesProperties, selectedRangeBetweenDatesProperties: $selectedRangeBetweenDatesProperties, enableDenseViewForDates: $enableDenseViewForDates, enableDenseSplashForDates: $enableDenseSplashForDates, startDateOfCalendar: $startDateOfCalendar, endDateOfCalendar: $endDateOfCalendar, dateSelectionMode: $dateSelectionMode, disablePastDates: $disablePastDates, initialViewMonthDateTime: $initialViewMonthDateTime, currentDateOfCalendar: $currentDateOfCalendar, datesForStreaks: $datesForStreaks, shieldDates: $shieldDates, selectedDates: $selectedDates, onSelectedDates: $onSelectedDates, onCalendarViewDate: $onCalendarViewDate, datePickerCalendarView: $datePickerCalendarView, startWeekday: $startWeekday, weekdaysSymbol: $weekdaysSymbol, monthsSymbol: $monthsSymbol, calendarDatesSectionMaxHeight: $calendarDatesSectionMaxHeight, context: $context}';
   }
 }
