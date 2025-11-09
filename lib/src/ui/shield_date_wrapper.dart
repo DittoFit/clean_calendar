@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// A widget that wraps a child and conditionally displays a shield icon
 /// in the top-right corner if [showShield] is true.
@@ -24,12 +25,16 @@ class ShieldDateWrapper extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        const Icon(
-          Icons.shield,
-          color: Colors.green,
-          size: 30,
+        SvgPicture.asset(
+          'lib/src/ui/icons/shield_icon_date_wrapper.svg',
+          package: 'clean_calendar',
+          width: 30,
+          height: 30,
         ),
-        child,
+        DefaultTextStyle(
+          style: const TextStyle(color: Colors.black),
+          child: child,
+        ),
       ],
     );
   }
